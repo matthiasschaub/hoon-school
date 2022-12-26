@@ -9,18 +9,18 @@ A lot of the definitions and code examples are taken directly from either the [o
 The git repository with the code related to the lessons can be found [here](https://git.sr.ht/~talfus-laddus/hoon-school).
 
 1. Expressions (`hoon` and `rune`), data (`atom` and `cell`), data types (`aura`), functions (`gate`) and branching.
-  - [notes](notes/lesson-1.md)
-  - code: [branch.hoon](gen/branch.hoon)
+    - [notes](notes/lesson-1.md)
+    - code: [branch.hoon](gen/branch.hoon)
 2. Irregular syntax, Hoon structures (`mold`) and hoon programs (`generators`).
-  - [notes](notes/lesson-2.md)
+    - [notes](notes/lesson-2.md)
 3. Recursion, cores and binary trees
-  - [notes](notes/lesson-3.md)
-  - code
-    - [lesson3.hoon](gen/lesson3.hoon)
-    - [add-sub.hoon](gen/add-sub.hoon)
-    - [fact.hoon](gen/fact.hoon)
-    - [card-deck.hoon](gen/card-deck.hoon)
-    - [sum-of-five.hoon](gen/sum-of-five.hoon)
+    - [notes](notes/lesson-3.md)
+    - code
+        - [lesson3.hoon](gen/lesson3.hoon)
+        - [add-sub.hoon](gen/add-sub.hoon)
+        - [fact.hoon](gen/fact.hoon)
+        - [card-deck.hoon](gen/card-deck.hoon)
+        - [sum-of-five.hoon](gen/sum-of-five.hoon)
 
 
 ## Misc
