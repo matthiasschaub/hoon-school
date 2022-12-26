@@ -10,7 +10,8 @@ The git repository with the code related to the lessons can be found [here](http
 
 1. Expressions (`hoon` and `rune`), data (`atom` and `cell`), data types (`aura`), functions (`gate`) and branching.
     - [notes](notes/lesson-1.md)
-    - code: [branch.hoon](gen/branch.hoon)
+    - code
+        - [branch.hoon](gen/branch.hoon)
 2. Irregular syntax, Hoon structures (`mold`) and hoon programs (`generators`).
     - [notes](notes/lesson-2.md)
 3. Recursion, cores and binary trees
@@ -32,7 +33,7 @@ The git repository with the code related to the lessons can be found [here](http
 ```bash
 git clone https://git.sr.ht/~talfus-laddus/hoon-school
 urbit -F $HOME/projects/zod
-~zod:dojo> |mount %base
+~zod:dojo> |mount %base  :: create %base folder on earth
 ```
 
 ## Usage
@@ -45,7 +46,7 @@ Start continuous synchronisation between the git repository's `gen` directory an
 Then run the fake ship and `commit` the files:
 ```bash
 urbit $HOME/projects/zod
-~zod:dojo> |commit %base
+~zod:dojo> |commit %base  :: sync %base desk with earth directly
 ```
 
 Finally execute a hoon program:

@@ -102,7 +102,7 @@ Urbit can represent dates which predate the universe. The universe is about
 13.000.000.000 years old.
 
 ```dojo
-> ^*  @da  :: bunt (default value)
+> ^*  @da     :: bunt (default value)
 ~2000.1.1
 > ^-  @da  0  :: earliest date
 ~292277024401-.1.1

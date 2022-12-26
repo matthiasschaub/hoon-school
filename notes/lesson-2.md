@@ -13,14 +13,22 @@ spec
 : It gives the type as a mold and attaches a face to it
 : The input value is called a `sample`
 
+mark
+: transformation rule for data (files types)
+
 mold
-: defines Hoon structures (cells, lists, sets). They have a default value ("bunt") and are strictly statically typed (e.e. they must match)
+: defines Hoon structures (cells, lists, sets)
+: They have a default value ("bunt") and are strictly statically typed (e.e. they must match)
 
 fence
-: is a way of making sure only data matching the appropriate structure get passed on (enforce type constraint): `|=  a=@ud  ^-  @ud` `irregular form` (syntactic sugar)
+: is a way of making sure only data matching the appropriate structure get passed on (enforce type constraint)
+: `|=  a=@ud  ^-  @ud` `irregular form` (syntactic sugar)
 
 list
-: is a running cell which terminates in a `~` (null) atom: `[1 2 3 ~]`
+: is a running cell which terminates in a `~` (null) atom
+: null terminated tuple
+: `[1 2 3 ~]`
+: irregular syntax: `~[1 2 3]`
 
 ## Runes
 
@@ -98,12 +106,23 @@ Evaluates as `%.y` (true) or `%.n` (false).
 'no'
 ```
 
-### Mold
+### Types
 
 Three kinds of types:
-1. Atoms: Values with auras
-2. Molds: Structures -> cells, lists. sets, arrays
-3. Marks: files types
+
+(1) Atoms
+: values with auras
+: a type of raw numeric data
+
+(2) Molds
+: structures like cells, lists. sets, arrays 
+: a structural type of data
+: if atoms are atoms molds are molecules
+
+(3) Marks
+: files types
+: a structural type of data with transformation rule
+: if molds are molecules marks are proteins (capable of transformations)
 
 Mold are used to:
 1. Validate the shape of a noun ("clam")
