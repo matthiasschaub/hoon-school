@@ -192,7 +192,6 @@ aa.a.data
 
 ```hoon
 =data [a=[aa=[aaa=[1 2] bbb=[3 4]] bb=[5 6]] b=[7 8]]
-::
 :: Mixing of absolute (wing) with relative (positional) addressing
 ::
 +:bbb.aa.a.data
@@ -208,5 +207,4 @@ aa.a.data
 ++  $
 ```
 
-`%` 
-is the default arm for many cores.
+`%` is the default arm for many cores.
