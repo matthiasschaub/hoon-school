@@ -22,7 +22,7 @@ mold
 
 fence
 : is a way of making sure only data matching the appropriate structure get passed on (enforce type constraint)
-: `|=  a=@ud  ^-  @ud` `irregular form` (syntactic sugar)
+: `|=  a=@ud  ^-  @ud` 
 
 list
 : is a running cell which terminates in a `~` (null) atom
@@ -140,7 +140,7 @@ Two mold runes are:
 A type union is a mold.
 
 ```hoon
-g: Type union (Two constants)
+:: Type union (Two constants)
 ::
 $?  %foo
     %bar
