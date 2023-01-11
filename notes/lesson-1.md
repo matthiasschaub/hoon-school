@@ -1,6 +1,6 @@
 # Lesson 1
 
-Expressions (`hoon` and `rune`), data (`atom` and `cell`), data types (`aura`), functions (`gate`) and branching.
+Hoon Syntax, expressions (`hoon` and `rune`), data (`atom` and `cell`), data types (`aura`), functions (`gate`) and branching.
 
 ## Terminology
 
@@ -16,31 +16,47 @@ Hoon programs
 : are built of expressions (`hoon`), rather like mathematical equations. Hoon expressions are built along a backbone of runes, which are two-character symbols that act like keywords in other programming languages to define the syntax, or grammar, of the expression. All runes take a fixed number of “children”. Children can themselves be runes with children, and Hoon programs work by chaining through these until a value—not another rune—is arrived at.
 
 hoon
-: expression is a single function which produces a value. Each expression takes place in a certain context (the "subject").
+: a single function which produces a value.
 
 runes
-: are a way to form expressions in Hoon (statements/keywords). If nouns are nouns, runes are verbs.
+: a way to form expressions in Hoon (statements/keywords)
+: if nouns are nouns, runes are verbs
+: a pair of ASCII characters (a digraph)
+
+subject
+: the context in which an expression takes place
+: every expression of Hoon is evaluated relative to its subject, a piece of data that represents the environment, or the context, of an expression.
 
 noun
-: is an atom or a cell. An atom is an unsigned integer. A cell is a pair of two nouns. Everything in Hoon (and Nock, and Urbit) is a noun.
+: an atom or a cells 
+: everything in Hoon (and Nock, and Urbit) is a noun. The Urbit OS itself is a noun.
 
 atom
-: is an nonzero integer number (0-∞)
+: an nonzero integer number (0-∞)
+: an unsigned integer.
+: `42`
 
 cell
-: is pair of two nouns
+: pair of two nouns
+: `[0 1]`
 
 aura
-: is a metadata "interpretation" of an atom (data-type). The aura `@t` means text ("cord")
+: a tag which lets you treat a number as text, time, date, Urbit address, IP address, and much more
+: data-type
+: `@t`
 
 bunt
 : is the default value of an aura
+: `^*  @da`
 
 clam
 : validates shape of a noun
 
 face
 : is the symbolic tree address (variable name)
+: “pin a face to the subject”
+: accepts three child expressions: a name (or face), a value, and the rest of the expression
+: `=/  a  .5`
 
 ace
 : are single spaces
@@ -91,7 +107,7 @@ gap
    /  \
  add  :-
      /  \
-    6    7
+    6  g 7
 ```
 
 ### Bunting and Casting

@@ -1,6 +1,7 @@
 ::  Confirm whether a value is greater then one
 ::
-|=  a=@ud
-?:  %-  gth  [a 1]
+|=  [a=@ud b=@ud]
+^-  @t
+?:  %-  gth  [a b]
   'yes'
 'no'

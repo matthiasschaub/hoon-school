@@ -6,29 +6,51 @@ Irregular syntax, Hoon structures (`mold`) and hoon programs (`generators`).
 
 gate
 : are deferred computations (function)
+: takes one or more arguments and returns a value
 : structurally gates consists of a `spec` (input specification) and a `hoon` (body)
+: `|=` bartis
 
 spec
-: is the input specification
-: It gives the type as a mold and attaches a face to it
-: The input value is called a `sample`
+: the input specification
+: it gives the type as a mold and attaches a face to it
+: the input value is called a `sample`
+
+referential transparency
+: output value of a functions depends solely upon input value(s)
 
 mark
 : transformation rule for data (files types)
 
 mold
 : defines Hoon structures (cells, lists, sets)
-: They have a default value ("bunt") and are strictly statically typed (e.e. they must match)
+: they have a default value ("bunt") and are strictly statically typed (e.e. they must match)
 
 fence
-: is a way of making sure only data matching the appropriate structure get passed on (enforce type constraint)
-: `|=  a=@ud  ^-  @ud` 
+: a way of making sure only data matching the appropriate structure get passed on (enforce type constraint)
+: `|=  a=@ud  ^-  @ud`
+
+statically typed
+: enforce type constraints
 
 list
-: is a running cell which terminates in a `~` (null) atom
+: a running cell which terminates in a `~` (null) atom
 : null terminated tuple
 : `[1 2 3 ~]`
 : irregular syntax: `~[1 2 3]`
+
+cord
+: text or string
+: `'with single quotes'`
+: `@t`
+
+tape
+: text or string
+: list of individual characters
+: `'with double quotes"`
+
+generator
+: Hoon program
+: naked generators having access only to information passed to them directly in their `sample`
 
 ## Runes
 
@@ -59,11 +81,17 @@ list
 : wutcol branches on a boolean test
 : `?:((gth 1 0) 3 4)`
 
+`/+`
+: faslus loads a library
+: import the contents of a file in the `/lib` directory
+
 ## Concepts
 
-### Regular and Irregular Forms
+### Regular (Tall and Wide) and Irregular Forms
 
-Tall mode is separated by gap.
+In tall mode, each rune and subexpression must be separated by a `gap` (tow or more spaces, or a line break).
+
+In wide form the rune is immediately followed by parentheses `( )`, and the various subexpressions inside the parentheses must be separated from the others by an `ace` (a single space)
 
 ```hoon
 :: Irregular form
@@ -93,15 +121,25 @@ add
 
 ### Branching
 
-Evaluates as `%.y` (true) or `%.n` (false).
+Test expression:
+- `++gth` (greater than >)
+- `++lth` (less than <)
+- `++gte` (greater than or equal to ≥)
+- `++lte` (less than or equal to ≤)
+
+Branching expression:
+- `?:` wutcol
+- evaluates as `%.y` (true) or `%.n` (false).
+
 
 ```hoon
-::  branch.hoon
+::  two/branch.hoon
 ::
 ::  Confirm whether a value is greater then one
 ::
-|=  a=@ud
-?:  %-  gth  [a 1]
+|=  [a=@ud b=@ud]
+^-  @t
+?:  %-  gth  [a b]
   'yes'
 'no'
 ```
@@ -115,7 +153,7 @@ Three kinds of types:
 : a type of raw numeric data
 
 (2) Molds
-: structures like cells, lists. sets, arrays 
+: structures like cells, lists. sets, arrays
 : a structural type of data
 : if atoms are atoms molds are molecules
 
@@ -194,4 +232,20 @@ A nonsensical gate playing around with casting and irregular syntax.
 :: Irregular would be `[a b c]`.
 ::
 :-  a  :-  b  c
+```
+
+### Imports
+
+```hoon
+:: two/ntw.hoon
+::
+:: Lesson 2
+:: Convert numbers to words (ntw).
+::
+:: Load library
+::
+/+  number-to-words
+|=  a=@
+^-  @t
+(to-words:eng-us:numbers:number-to-words a)
 ```
