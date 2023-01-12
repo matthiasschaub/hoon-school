@@ -4,27 +4,40 @@ Recursion, cores and binary trees
 
 ## Terminology
 
+type inference
+: infer the type of an expression using syntactic clues
+: `> ? 0x15` -> `@ux`
+
 trap
 : can be used to repeat a section of code with changes to values (recursion)
 
 core
-: is a cell pairing operations to data (data structure). Many cores have a default `$` (buc) arm, essentially the primary (or only) code.
+: is a cell pairing operations to data (data structure)
+: many cores have a default `$` (buc) arm, essentially the primary (or only) code
+
+limbs
+: arms and legs
 
 arms
-: hold code, while `legs` hold data. Both are `limbs`. Arms do things. Legs hold data
+: hold code
+: do things
+
+legs
+: hold data
 
 ## Runes
 
 `~?`
-: a `hint`. sigwut tells the runtime to make a side effect (print).
-: This is not nock, no changes to state are made.
+: a `hint`
+: tells the runtime to make a side effect (print)
+: this is not nock, no changes to state are made
 
 `~&`
-: a debugging print statement.
-: This is not nock, no changes to state are made.
+: a debugging print statement
 
 `|-`
-: a `trap` sets a recursion point and immediately slams the `$` (buc) arm.
+: barhep sets a `trap`
+: sets a recursion point and immediately slams the `$` (buc) arm
 
 `%=`
 : -
@@ -81,13 +94,13 @@ $(n (dec n))
 
 ### Cores
 
-A core is a cell pairing operations to data (data structure).
+A core is a cell of operations and data. Bar (`|`) runes make cores. A core is a cell `[battery payload]`.
 
-A core is a cell `[battery payload]`:
+battery
+: describes the things that can be done (the operations)
 
-- battery describes the things that can be done (the operations)
-- payload describes the data on which those operations rely (the spec (input values) AND
-  the subject (operating context))
+payload 
+: describes the data on which the battery rely (the spec (input values) and the subject (operating context))
 
 - [battery payload] = [battery [sample context]]
 - battery = code
@@ -113,12 +126,12 @@ a=0
 
 Limbs of a core (not the same as `[battery and payload]`):
 
-- arms do things: computations (maked by `++` or `+$`)
+- arms do things: code (marked by `++` or `+$`)
 - legs hold things: data
 
 ### Arms
 
-An arm is a Hoon expression to be evaluated against the core subject (i.e. its parent
+An arm is a Hoon expression to be evaluated against the core subject (i.e. its parent 
 core is its subject).
 
 Within a core, we label arms as Hoon expressions (frequently `|=` bartis gates) using
@@ -129,22 +142,22 @@ An example defining two gates as arms which can be called later:
 
 ```hoon
 |=  n=@ud
-:: compose two expressions
+::  compose two expressions
 ::
 =>
-:: define a core with two arms
+::  define a core with two arms
 ::
-|%
-++  add-one
-  |=  a=@ud
-  ^-  @ud
+|%             :: generic core
+++  add-one    :: arm w/ name
+  |=  a=@ud    :: gate
+  ^-  @ud      :: return type
   %:  add  a  1  ==
 ++  sub-one
   |=  a=@ud
   ^-  @ud
   %:  sub  a  1  ==
 --
-:: calls the gate add-one defined in the core above
+::  calls the gate add-one defined in the core above
 ::
 %:  add-one  n  ==
 ```
@@ -160,6 +173,35 @@ Another example defining a card deck type as core:
 --
 ```
 
+### Recursion
+
+barhep (`|-`) is a core with single arm named buc (`$`).
+
+centis (`|-`) tells Hoon to find the buc (`$`) core and reevaluate it with the list of changes attached to it.
+
+```hoon
+::  Recursion using traps
+::
+=/  counter  1
+=/  sum  0
+::  sets a recursion point
+::  and immediately slams the `$` (buc) arm
+::
+|-
+?:  (gth counter 5)
+  sum
+::  centis tells Hoon to find the buc core
+::  and reevaluate it with the list of changes attached to it
+::
+%=  $
+  ::  following two lines are executed "at the same time"
+  ::  (atomic operation)
+  ::
+  counter  (add counter 1)
+  sum      (add sum counter)
+==
+```
+
 ### Addressing Limbs (Binary Trees)
 
 Everything in Urbit is a binary tree. And all code in Urbit is also represented as data.
@@ -173,15 +215,33 @@ gate, core, whatever, via addressing. There are three different ways to access v
 
 Values at addresses in a tree can be unambiguously located several ways.
 
-### Access binary tree leafs.
+#### Numeric Addressing
 
-Positional Addressing:
+```dojo
+> +1:[1 2 3]
+[1 2 3]
+> +2:[1 2 3]
+1
+> +3:[1 2 3]
+[2 3]
+> +4:[1 2 3]
+dojo: hoon expression failed.
+```
 
-- `-` (left), `+` (right) or `<` (left) and `<` (right).
+#### Positional Addressing
+
+- `-` (left), `+` (right) or `<` (left) and `>` (right).
 - `-/"hello"` -> `i="h"`
 - `+/"hello"` -> `t="ello"`
 
-Wing addressing:
+```dojo
+> -:[1 2 3]
+1
+> +:[1 2 3]
+2 3
+```
+
+#### Wing Addressing
 
 ```hoon
 =data [a=[aa=[aaa=[1 2] bbb=[3 4]] bb=[5 6]] b=[7 8]]
@@ -192,15 +252,17 @@ aa.a.data
 
 ```hoon
 =data [a=[aa=[aaa=[1 2] bbb=[3 4]] bb=[5 6]] b=[7 8]]
-:: Mixing of absolute (wing) with relative (positional) addressing
+::  Mixing of absolute (wing) with relative (positional) addressing
 ::
 +:bbb.aa.a.data
 ```
 
+## TODO
+
 `|=` is equivalent to something like:
 
 ```hoon
-:: Store main body of the gate (main) inside an arm named `%` ("buc")
+::  Store main body of the gate (main) inside an arm named `%` ("buc")
 ::
 =|  a
 |%
@@ -208,3 +270,159 @@ aa.a.data
 ```
 
 `%` is the default arm for many cores.
+
+## Examples
+
+```hoon
+::  /lib/number-to-words.hoon
+::
+::  |number-to-words: conversion of unsigned integers to a tape
+::
+::  returns a unit because not all numbers can always be represented
+::
+|%
+++  numbers
+  |%
+  ++  ten                    10
+  ++  one-hundred            100
+  ++  one-thousand           (pow 10 3)
+  ++  one-million            (pow 10 6)
+  ++  one-billion            (pow 10 9)
+  ++  one-trillion           (pow 10 12)
+  ++  one-quadrillion        (pow 10 15)
+  ++  one-quintillion        (pow 10 18)
+  ++  one-sextillion         (pow 10 21)
+  ++  one-septillion         (pow 10 24)
+  ++  one-octillion          (pow 10 27)
+  ++  one-nonillion          (pow 10 30)
+  ++  one-decillion          (pow 10 33)
+  ++  one-undecillion        (pow 10 36)
+  ++  one-duodecillion       (pow 10 39)
+  ++  one-tredecillion       (pow 10 42)
+  ++  one-quattuordecillion  (pow 10 45)
+  ++  one-quindecillion      (pow 10 48)
+  ++  one-sexdecillion       (pow 10 51)
+  ++  one-septendecillion    (pow 10 54)
+  ++  one-octodecillion      (pow 10 57)
+  ++  one-novemdecillion     (pow 10 60)
+  ++  one-vigintillion       (pow 10 63)
+  ++  max                    (pow 10 66)
+  --
+++  eng-us
+  |%
+  ++  to-words
+    |=  num=@u
+    ^-  (unit tape)
+    =+  numbers
+    ?:  (gte num max)
+      ~
+    :-  ~
+    |-
+    ^-  tape
+    ::  0-19
+    ?:  =(num 0)   "zero"
+    ?:  =(num 1)   "one"
+    ?:  =(num 2)   "two"
+    ?:  =(num 3)   "three"
+    ?:  =(num 4)   "four"
+    ?:  =(num 5)   "five"
+    ?:  =(num 6)   "six"
+    ?:  =(num 7)   "seven"
+    ?:  =(num 8)   "eight"
+    ?:  =(num 9)   "nine"
+    ?:  =(num 10)  "ten"
+    ?:  =(num 11)  "eleven"
+    ?:  =(num 12)  "twelve"
+    ?:  =(num 13)  "thirteen"
+    ?:  =(num 14)  "fourteen"
+    ?:  =(num 15)  "fifteen"
+    ?:  =(num 16)  "sixteen"
+    ?:  =(num 17)  "seventeen"
+    ?:  =(num 18)  "eighteen"
+    ?:  =(num 19)  "nineteen"
+    ::  20-99
+    ::
+    ::  tpl: tens place
+    ::  rem: ones place
+    ::  sfx: suffix
+    ::
+    =/  tpl  (div num ten)
+    =/  rem  (mod num ten)
+    =/  sfx
+      ?:  |(=(rem 0) (gte tpl 10))
+        ~
+      ['-' $(num rem)]
+    ?:  =(tpl 2)  (weld "twenty" sfx)
+    ?:  =(tpl 3)  (weld "thirty" sfx)
+    ?:  =(tpl 4)  (weld "forty" sfx)
+    ?:  =(tpl 5)  (weld "fifty" sfx)
+    ?:  =(tpl 6)  (weld "sixty" sfx)
+    ?:  =(tpl 7)  (weld "seventy" sfx)
+    ?:  =(tpl 8)  (weld "eighty" sfx)
+    ?:  =(tpl 9)  (weld "ninety" sfx)
+    ::  100-max
+    ::
+    ::  num-break: repeated pattern from 100 on
+    ::
+    =/  num-break
+      ::
+      ::  min: minimum to qualify for this break
+      ::  str: english word for this break
+      ::
+      |=  [min=@u str=tape]
+      =/  rem  (mod num min)
+      ;:  weld
+        ^$(num (div num min))
+        [' ' str]
+        ?:  =(rem 0)
+          ~
+        %+  weld
+          ?:((lth rem one-hundred) " and " ", ")
+        ^$(num rem)
+      ==
+    ::
+    ?:  (lth num one-thousand)
+      (num-break one-hundred "hundred")
+    ?:  (lth num one-million)
+      (num-break one-thousand "thousand")
+    ?:  (lth num one-billion)
+      (num-break one-million "million")
+    ?:  (lth num one-trillion)
+      (num-break one-billion "billion")
+    ?:  (lth num one-quadrillion)
+      (num-break one-trillion "trillion")
+    ?:  (lth num one-quintillion)
+      (num-break one-quadrillion "quadrillion")
+    ?:  (lth num one-sextillion)
+      (num-break one-quintillion "quintillion")
+    ?:  (lth num one-septillion)
+      (num-break one-sextillion "sextillion")
+    ?:  (lth num one-octillion)
+      (num-break one-septillion "septillion")
+    ?:  (lth num one-nonillion)
+      (num-break one-octillion "octillion")
+    ?:  (lth num one-decillion)
+      (num-break one-nonillion "nonillion")
+    ?:  (lth num one-undecillion)
+      (num-break one-decillion "decillion")
+    ?:  (lth num one-duodecillion)
+      (num-break one-undecillion "undecillion")
+    ?:  (lth num one-tredecillion)
+      (num-break one-duodecillion "duodecillion")
+    ?:  (lth num one-quattuordecillion)
+      (num-break one-tredecillion "tredecillion")
+    ?:  (lth num one-quindecillion)
+      (num-break one-quattuordecillion "quattuordecillion")
+    ?:  (lth num one-sexdecillion)
+      (num-break one-quindecillion "quindecillion")
+    ?:  (lth num one-septendecillion)
+      (num-break one-sexdecillion "sexdecillion")
+    ?:  (lth num one-octodecillion)
+      (num-break one-septendecillion "septendecillion")
+    ?:  (lth num one-novemdecillion)
+      (num-break one-octodecillion "octodecillion")
+    ?:  (lth num one-vigintillion)
+      (num-break one-novemdecillion "novemdecillion")
+    (num-break one-vigintillion "vigintillion")
+  --
+--

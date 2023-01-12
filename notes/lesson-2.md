@@ -146,21 +146,23 @@ Branching expression:
 
 ### Types
 
-Three kinds of types:
+A type is really a rule for interpretation. There are three kinds of types (All of these
+are molds, or Hoon types. They are separated by complexity):
 
 (1) Atoms
 : values with auras
 : a type of raw numeric data
+: if `atoms` are atoms `cells` are molecules
 
 (2) Molds
-: structures like cells, lists. sets, arrays
-: a structural type of data
-: if atoms are atoms molds are molecules
+: structures like cells, lists and sets
+: structural representation of data
+: if `cells` are molecules `molds` are molecule definitions or a template
 
 (3) Marks
-: files types
+: file types
 : a structural type of data with transformation rule
-: if molds are molecules marks are proteins (capable of transformations)
+: if `molds` are molecules `marks` are proteins (capable of transformations)
 
 Mold are used to:
 1. Validate the shape of a noun ("clam")
