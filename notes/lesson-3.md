@@ -28,37 +28,39 @@ legs
 ## Runes
 
 `~?`
-: a `hint`
+: sigzap is a `hint`
 : tells the runtime to make a side effect (print)
 : this is not nock, no changes to state are made
 
 `~&`
-: a debugging print statement
+: sigwut is a debugging print statement
 
 `|-`
 : barhep sets a `trap`
 : sets a recursion point and immediately slams the `$` (buc) arm
 
 `%=`
-: -
+: centis resolves a wing of the subject, but with changes made.
 
 `==`
-: Rune terminator
+: tistis is a rune terminator
 
 `--`
-: Rune terminator
+: hephep is a rune terminator
 
 `%+`
-: Apply a gate to [a b] cell sample
+: cenlus applies a gate to [a b] cell sample
 
 `|%`
-: Produce a core, [battery payload]
+: barcen produces a core, [battery payload]
 
 `++`
-: Code builder
+: luslus produces an arm
+: code builder
 
 `+$`
-: Type builder
+: lusbuc produces a structured arm (type definition)
+: type builder
 
 `=>`
 : Compose two children. One is the operator, one is the thing which the operator needs to know about.
@@ -67,10 +69,10 @@ legs
 : Same as above but inverted
 
 `.+`
-: -
+: Increment
 
 `.=`
-: -
+: dottis tests for equality
 
 Missing `!>` and `?()` (type union)
 
@@ -78,13 +80,15 @@ Missing `!>` and `?()` (type union)
 
 - `=()` is `.=`
 
+and following regular form
+
 ```hoon
 %=  $
   n  (dec n)
 ==
 ```
 
-is
+is following irregular form
 
 ```hoon
 $(n (dec n))
@@ -99,7 +103,7 @@ A core is a cell of operations and data. Bar (`|`) runes make cores. A core is a
 battery
 : describes the things that can be done (the operations)
 
-payload 
+payload
 : describes the data on which the battery rely (the spec (input values) and the subject (operating context))
 
 - [battery payload] = [battery [sample context]]
@@ -114,12 +118,6 @@ Tail (payload) of `dec` generator:
 [a=0 <46.hgz 1.pnw %140>]
 > +6:dec
 a=0
-```
-
-```
-      1
-  2       3
-4   5   6   7
 ```
 
 ### Limbs
@@ -216,6 +214,13 @@ gate, core, whatever, via addressing. There are three different ways to access v
 Values at addresses in a tree can be unambiguously located several ways.
 
 #### Numeric Addressing
+
+Binary tree number addresses:
+```
+      1
+  2       3
+4   5   6   7
+```
 
 ```dojo
 > +1:[1 2 3]
