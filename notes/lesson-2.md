@@ -157,6 +157,7 @@ are molds, or Hoon types. They are separated by complexity):
 (2) Molds
 : structures like cells, lists and sets
 : structural representation of data
+: templates or rules for identifying actual type structures
 : if `cells` are molecules `molds` are molecule definitions or a template
 
 (3) Marks
@@ -169,15 +170,22 @@ Mold are used to:
 2. Produce an example value ("bunt")
 
 A mold is a function from a noun to a noun. A mold can be used to map any noun to a
-typed value - If this fails, then the mold crashes.
+typed value - If this fails, then the mold crashes. Rhey are actually gates, meaning that they operate on a value to coerce it to a particular structure.
 
-Two mold runes are:
+Two things to do with molds are:
 - `$?` bucwut, which forms a type union
 - `$:` buccol, which forms a named tuple
 
 #### Type Unions
 
 A type union is a mold.
+
+```hoon
+::  Only accept an atom of an unsigned aura type
+::
+|=  [n=$?(@ud @ux @ub)]
+(add n 1)
+```
 
 ```hoon
 :: Type union (Two constants)
