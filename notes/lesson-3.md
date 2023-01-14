@@ -6,7 +6,7 @@ Recursion, cores and binary trees
 
 type inference
 : infer the type of an expression using syntactic clues
-: `> ? 0x15` -> `@ux`
+: `> ? 0x15` results in `@ux`
 
 trap
 : can be used to repeat a section of code with changes to values (recursion)
@@ -112,11 +112,13 @@ payload
 - sample = input (arguments, parameters)
 - context = effective subject of the battery
 
-Tail (payload) of `dec` generator:
+Head (battery) of `dec` generator: `+:dec`
+
+Tail (payload) of `dec` generator::
 ```dojo
 > +:dec
 [a=0 <46.hgz 1.pnw %140>]
-> +6:dec
+> +>:dec
 a=0
 ```
 
@@ -130,7 +132,7 @@ Limbs of a core (not the same as `[battery and payload]`):
 ### Arms
 
 An arm is a Hoon expression to be evaluated against the core subject (i.e. its parent 
-core is its subject).
+core is its subject). Arm is a features of core (no arms outside of cores).
 
 Within a core, we label arms as Hoon expressions (frequently `|=` bartis gates) using
 the `++` luslus digraph (`++` isn't formally a rune because it doesn't actually change
@@ -145,16 +147,17 @@ An example defining two gates as arms which can be called later:
 =>
 ::  define a core with two arms
 ::
-|%             :: generic core
-++  add-one    :: arm w/ name
-  |=  a=@ud    :: gate
-  ^-  @ud      :: return type
-  %:  add  a  1  ==
+|%                  :: generic core
+++  pi  .3.1415926  :: arm w/ name (just a value)
+++  add-one         :: another arm (code)
+  |=  a=@ud         :: gate
+  ^-  @ud           :: return type
+  (add a 1)
 ++  sub-one
   |=  a=@ud
   ^-  @ud
-  %:  sub  a  1  ==
---
+  (sub a 1)
+--                 :: closes the core (b/c any # of arms)
 ::  calls the gate add-one defined in the core above
 ::
 %:  add-one  n  ==
@@ -173,7 +176,7 @@ Another example defining a card deck type as core:
 
 ### Recursion
 
-barhep (`|-`) is a core with single arm named buc (`$`).
+trap (`|-`) is a core with single arm named buc (`$`).
 
 centis (`|-`) tells Hoon to find the buc (`$`) core and reevaluate it with the list of changes attached to it.
 
@@ -262,21 +265,9 @@ aa.a.data
 +:bbb.aa.a.data
 ```
 
-## TODO
-
-`|=` is equivalent to something like:
-
-```hoon
-::  Store main body of the gate (main) inside an arm named `%` ("buc")
-::
-=|  a
-|%
-++  $
-```
-
-`%` is the default arm for many cores.
-
 ## Examples
+
+- [/lib/number-to-words.hoon](/gen/three/number-to-words.hoon)
 
 ```hoon
 ::  /lib/number-to-words.hoon
@@ -431,3 +422,4 @@ aa.a.data
     (num-break one-vigintillion "vigintillion")
   --
 --
+```
