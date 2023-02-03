@@ -105,7 +105,7 @@ In wide form the rune is immediately followed by parentheses `( )`, and the vari
 1
 :: Regular form (wide)
 ::
-:^(1 2 3 4)
+:^  1  2  3  4
 ```
 
 ```hoon
@@ -116,7 +116,7 @@ add
 :-  1  3
 :: Regular form (wide)
 ::
-(add 1 3)
+%-  add  :-  1  3
 ```
 
 ### Branching
