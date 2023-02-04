@@ -31,9 +31,9 @@ The git repository with the code related to the lessons can be found [here](http
 ## Setup
 
 ```bash
-git clone https://git.sr.ht/~talfus-laddus/hoon-school
-urbit -F $HOME/projects/zod
-~zod:dojo> |mount %base  :: create %base folder on earth
+$ git clone https://git.sr.ht/~talfus-laddus/hoon-school
+$ urbit -F $HOME/projects/zod
+> |mount %base  :: create %base folder on earth
 ```
 
 ## Usage
@@ -45,11 +45,12 @@ Start continuous synchronisation between the git repository's `gen` directory an
 
 Then run the fake ship and `commit` the files:
 ```bash
-urbit $HOME/projects/zod
-~zod:dojo> |commit %base  :: sync %base desk with earth directly
+$ urbit $HOME/projects/zod
+> |start %language-server
+> |commit %base  :: sync %base desk with earth directly
 ```
 
 Finally execute a hoon program:
-```bash
-~zod:dojo> +list 5
-```
+```dojo
+> +list 5
+``
