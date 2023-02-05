@@ -2,17 +2,20 @@
 ::
 ::  dojo:
 ::      > =splt -build-file %/lib/splt-exps/hoon
-::      > =exps ini:splt
-::      > (add:splt exps 2)
+::      > =myexps ini:splt
+::      > =myexps (add:splt myexps ~zod 1)
+::      > myexps
 ::
 |%
-+$  ex   [plot=@ud val=@ud]
++$  ex   [plot=@p val=@ud]
 +$  exs  (list ex)
 ++  ini
+  ::    initialize list of shared expenses
+  ::
   ^-  exs
-  *exs
+  [[~zod 0] ~]
 ++  add
-  ::    add expense to all expenses
+  ::    add expense to shared expenses
   ::
   |=  [exps=exs exp=ex]
   ^-  exs
@@ -20,13 +23,22 @@
 ++  sum
   ::    sum expenses of one plot
   ::
-  |=  val=@ud
-  ^-  @ud
-  val
- ++ splt
+  :: |=  [exps=exs plot=@p]
+  :: ^-  @ud
+  :: =/  ssum  0
+  :: =/  i    0
+  :: |-
+  :: ?:  =(i (lent exps))
+  ::   ssum
+  :: ?:  (test (head (scag i exps)) plot)
+  ::   %=  $
+  ::   i    +(i)
+  ::   ssum  (add (tail (scag i exps)) ssum)
+  ::   ==
+  :: $(i +(i))
+  ~
+++  splt
   ::   split expenses
   ::
-  |=  val=@ud
-  ^-  @ud
-  val
+  ~
 --
