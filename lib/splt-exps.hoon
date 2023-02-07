@@ -21,22 +21,13 @@
   ^-  exs
   (snoc exps exp)
 ++  sum
-  ::    sum expenses of one plot
+  ::    sum expenses of all plots
   ::
-  :: |=  [exps=exs plot=@p]
-  :: ^-  @ud
-  :: =/  ssum  0
-  :: =/  i    0
-  :: |-
-  :: ?:  =(i (lent exps))
-  ::   ssum
-  :: ?:  (test (head (scag i exps)) plot)
-  ::   %=  $
-  ::   i    +(i)
-  ::   ssum  (add (tail (scag i exps)) ssum)
-  ::   ==
-  :: $(i +(i))
-  ~
+  ::  create a map
+  ::
+  %+  roll  a
+    |=  [[p=@p q=@] counts=(map @p @)]
+    (~(put by counts) p (add (~(gut by counts) p 0) q))
 ++  splt
   ::   split expenses
   ::

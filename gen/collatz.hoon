@@ -11,15 +11,15 @@
 =/  m  n                          :: face  (variable)     of maximal value
 =/  i  0                          :: face                 of control variable
 |-                                :: trap  (recursion point)
-?:  =(n 1)
+?:  =(n 1)                        :: conditional
    [i m]                          ::       (return value) of a cell of two atoms
-?:  =((mod n 2) 0)
+?:  =((mod n 2) 0)                :: conditional
   %=  $                           :: resolve wing (data reference) with changes
     n  (div n 2)
     m  (max m n)
     i  +i
   ==
-%=  $
+%=  $                             :: resolve wing (data reference) with changes
   n  (add (mul n 3) 1)
   m  (max m n)
   i  +i

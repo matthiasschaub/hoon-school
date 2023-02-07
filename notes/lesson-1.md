@@ -4,13 +4,47 @@ Hoon Syntax, expressions (`hoon` and `rune`), data (`atom` and `cell`), data typ
 
 ## Terminology
 
+### Urbit
+
 Urbit consists of an identity protocol (“Azimuth”, or “Urbit ID”) and a system protocol (“Arvo”, or “Urbit OS”).
 
 Urbit ID (Azimuth)
+: an identity protocol
 : is a general-purpose public-key infrastructure (PKI) on the Ethereum blockchain, used as a platform for Urbit identities. It provides a system of scarce and immutable identities which are cryptographically secure.
 
 Urbit OS (Arvo)
-: is an operating system which provides the software for the personal server platform that constitutes the day-to-day usage of Urbit. Arvo works over a peer-to-peer end-to-end-encrypted network to interact with other Urbit ships (or unique instances).
+: a system protocol
+: a clean-slate OS
+: a single pure function
+: A peer-to-peer end-to-end-encrypted network
+: A complete stack for personal computing in the cloud and a network between the nodes that run that stack (ships)
+
+Urbit ship
+: unique instance of a computer in the network
+
+### Hoon
+
+Hoon
+: A strictly typed functional programming language
+: Hoon compiles to Nock
+
+Nock
+: A purely functional typeless programming language
+: A minimalist Turing complete combinator calculus
+
+Noun
+: Everything in Hoon (and Nock, and Urbit) is a noun
+: An atom or a cell
+: A Binary tree whose leaves are atoms
+
+atom
+: an nonzero integer number (0-∞)
+: an unsigned integer
+: `42`
+
+cell
+: pair of two nouns
+: `[0 1]`
 
 Hoon programs
 : are built of expressions (`hoon`), rather like mathematical equations. Hoon expressions are built along a backbone of runes, which are two-character symbols that act like keywords in other programming languages to define the syntax, or grammar, of the expression. All runes take a fixed number of “children”. Children can themselves be runes with children, and Hoon programs work by chaining through these until a value—not another rune—is arrived at.
@@ -20,25 +54,14 @@ hoon
 
 runes
 : a way to form expressions in Hoon (statements/keywords)
+: fundamental operators/functions
 : if nouns are nouns, runes are verbs
-: a pair of ASCII characters (a digraph)
+: made out of two ASCII special characters (digraphs)
+: `=/`
 
 subject
 : the context in which an expression takes place
 : every expression of Hoon is evaluated relative to its subject, a piece of data that represents the environment, or the context, of an expression.
-
-noun
-: an atom or a cells 
-: everything in Hoon (and Nock, and Urbit) is a noun. The Urbit OS itself is a noun.
-
-atom
-: an nonzero integer number (0-∞)
-: an unsigned integer.
-: `42`
-
-cell
-: pair of two nouns
-: `[0 1]`
 
 aura
 : a tag which lets you treat a number as text, time, date, Urbit address, IP address, and much more
@@ -95,6 +118,26 @@ gap
 : kettar produces example type value. 
 : default value (bunt)
 : `^*  @da`
+
+## Concepts
+
+### Nouns
+
+Utilized in three different manners:
+
+1. formulas
+2. subjects
+3. products
+
+A *formula* is a noun utilized as a function
+that takes in a noun, its *subject*,
+and returns a noun, its *product*.
+
+## Runes
+
+Runes are separated from one another by either two spaces or a line break. Both called 'gap'.
+
+All runes take a fixed number of “children”. Children can themselves be runes with children, and Hoon programs work by chaining through these until a value - not another rune - is arrived at.
 
 ## Examples
 
