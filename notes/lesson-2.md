@@ -1,6 +1,6 @@
 # Lesson 2
 
-Irregular syntax, Hoon structures (`mold`) and hoon programs (`generators`).
+Irregular syntax, more branching, functions (`gate`), structures (`mold`) and programs (`generator`).
 
 ## Terminology
 
@@ -9,6 +9,7 @@ gate
 : takes one or more arguments and returns a value
 : structurally gates consists of a `spec` (input specification) and a `hoon` (body)
 : `|=` bartis
+: `|=  [a=@ b=@]  %-  add   :-  a  b`
 
 spec
 : the input specification
@@ -23,10 +24,12 @@ mark
 
 mold
 : defines Hoon structures (cells, lists, sets)
-: they have a default value ("bunt") and are strictly statically typed (e.e. they must match)
+: they have a default value ("bunt")
+: they are strictly statically typed (e.e. they must match)
 
 fence
-: a way of making sure only data matching the appropriate structure get passed on (enforce type constraint)
+: a way of making sure only data matching the appropriate structure get passed on
+: enforce type constraint
 : `|=  a=@ud  ^-  @ud`
 
 statically typed
@@ -38,51 +41,23 @@ list
 : `[1 2 3 ~]`
 : irregular syntax: `~[1 2 3]`
 
-cord
-: text or string
-: `'with single quotes'`
-: `@t`
-
 tape
 : text or string
 : list of individual characters
-: `'with double quotes"`
+: `"with double quotes"`
+: `@t`
 
 generator
 : Hoon program
-: naked generators having access only to information passed to them directly in their `sample`
 
 ## Runes
-
-`::`
-: Comment
-
-`:-`
-: colhep construct a cell (2-tuple).
-: irregular syntax `[1  3]`
-
-`:^`
-: colket construct a quadruple (4-tuple).
-
-`%-`
-: cenhep slams a gate (calls a function)
-: irregular syntax `(add 1 3)`
-
-`^-`
-: kethep casts by explicit type label.
-: enforces type constrain
-: irregular syntax: ```@ux`5.5``
 
 `|=`
 : bartis produces a gate (function)
 : `|=  [a=@ b=@]  %-  add   :-  a  b`
 
-`?:`
-: wutcol branches on a boolean test
-: `?:((gth 1 0) 3 4)`
-
 `/+`
-: faslus loads a library
+: fasls loads a library
 : import the contents of a file in the `/lib` directory
 
 ## Concepts
@@ -119,18 +94,13 @@ add
 %-  add  :-  1  3
 ```
 
-### Branching
+### Branching 2
 
 Test expression:
 - `++gth` (greater than >)
 - `++lth` (less than <)
 - `++gte` (greater than or equal to ≥)
 - `++lte` (less than or equal to ≤)
-
-Branching expression:
-- `?:` wutcol
-- evaluates as `%.y` (true) or `%.n` (false).
-
 
 ```hoon
 ::  two/branch.hoon

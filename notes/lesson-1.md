@@ -1,6 +1,6 @@
 # Lesson 1
 
-Hoon Syntax, expressions (`hoon` and `rune`), data (`atom` and `cell`), data types (`aura`), functions (`gate`) and branching.
+Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching.
 
 ## Terminology
 
@@ -95,11 +95,15 @@ gap
 `:-`
 : colhep construct a cell (2-tuple).
 : `:-  1  3`
-: `[1 3]`
+: irregular syntax `[1 3]`
+
+`:^`
+: colket construct a quadruple (4-tuple).
 
 `%-`
 : cenhep slams a gate (calls a function)
 : `%-  add  :-  1  3`
+: irregular syntax `(add 1 3)`
 
 `=/`
 : tisfas gives value a `face`
@@ -113,11 +117,17 @@ gap
 : kethep casts by explicit type label.
 : enforces type constrain
 : `^-  @ux  ^-  @  5.5`
+: irregular syntax: ```@ux`5.5``
 
 `^*`
 : kettar produces example type value. 
 : default value (bunt)
 : `^*  @da`
+
+`?:`
+: wutcol branches on a boolean test
+: `?:((gth 1 0) 3 4)`
+
 
 ## Concepts
 
@@ -133,11 +143,23 @@ A *formula* is a noun utilized as a function
 that takes in a noun, its *subject*,
 and returns a noun, its *product*.
 
-## Runes
+### Runes
 
 Runes are separated from one another by either two spaces or a line break. Both called 'gap'.
 
 All runes take a fixed number of “children”. Children can themselves be runes with children, and Hoon programs work by chaining through these until a value - not another rune - is arrived at.
+
+### Branching 1
+
+Branching expression:
+- `?:` wutcol
+- evaluates as `%.y` (true) or `%.n` (false).
+
+```hoon
+?:  =([a b])
+  'yes'
+'no'
+```
 
 ## Examples
 
