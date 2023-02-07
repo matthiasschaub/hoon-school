@@ -1,6 +1,6 @@
 # Lesson 4
 
-More on text (cords, knots, terms, and tapes), lists and libraries.
+Text (`cord`, `knot`, `term`, and `tape`), lists and libraries.
 
 ## Terminology
 
@@ -32,6 +32,10 @@ unit
 
 `!:`
 : zapcol turns on error tracing
+
+`/+`
+: fasls loads a library
+: import the contents of a file in the `/lib` directory
 
 ## Programs
 
@@ -130,6 +134,22 @@ Interpolation:
 ### List
 
 There is no type list. List is a mold builder (a gate building gate).
+
+### Imports
+
+```hoon
+:: two/ntw.hoon
+::
+:: Lesson 2
+:: Convert numbers to words (ntw).
+::
+:: Load library
+::
+/+  number-to-words
+|=  a=@
+^-  @t
+(to-words:eng-us:numbers:number-to-words a)
+```
 
 ## Example
 

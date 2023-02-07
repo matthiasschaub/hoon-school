@@ -14,14 +14,17 @@ The git repository with the code related to the lessons can be found [here](http
     - [notes](notes/lesson-2.md)
     - code
         - [branch.hoon](gen/branch.hoon)
-3. Recursion, cores and binary trees
-    - [notes](notes/lesson-3.md)
+3. Binary trees, recursion (`trap`) and cores
+    - [notes on binary trees](notes/lesson-3-2.md)
+    - [notes on recursion and cores](notes/lesson-3-1.md)
     - code
         - [lesson3.hoon](gen/lesson3.hoon)
         - [add-sub.hoon](gen/add-sub.hoon)
         - [fact.hoon](gen/fact.hoon)
         - [card-deck.hoon](gen/card-deck.hoon)
         - [sum-of-five.hoon](gen/sum-of-five.hoon)
+4. Text (`cord`, `knot`, `term`, and `tape`), lists and libraries.
+    - [notes](notes/lesson-4.md)
 
 
 ## Misc
