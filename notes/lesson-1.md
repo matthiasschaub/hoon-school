@@ -29,8 +29,9 @@ Hoon
 : Hoon compiles to Nock
 
 Nock
-: A purely functional typeless programming language
+: A purely functional typeless programming language (low level)
 : A minimalist Turing complete combinator calculus
+: A Turing-complete function that maps a cell [subject formula] to a noun product
 
 Noun
 : Everything in Hoon (and Nock, and Urbit) is a noun
@@ -62,6 +63,7 @@ runes
 subject
 : the context in which an expression takes place
 : every expression of Hoon is evaluated relative to its subject, a piece of data that represents the environment, or the context, of an expression.
+: the subject is the noun against which any arbitrary Hoon code is evaluated.
 
 aura
 : a tag which lets you treat a number as text, time, date, Urbit address, IP address, and much more

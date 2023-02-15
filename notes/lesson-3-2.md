@@ -10,6 +10,7 @@ trap
 : can be used to repeat a section of code with changes to values (recursion)
 
 core
+: a data structure
 : is a cell pairing operations to data (data structure)
 : many cores have a default `$` (buc) arm, essentially the primary (or only) code
 
@@ -72,13 +73,23 @@ legs
 `.=`
 : dottis tests for equality
 
-Missing `!>` and `?()` (type union)
+`!>`
+: zapgar forms a vase (type-noun)
+
+`-:!>`
+: type spear
+: the type of given value value
+: left side of a vase (type-noun)
+: `-:!>(1)  :: produces: #t/@ud`
+
 
 ## Irregular Forms
 
 - `=()` is `.=`
 
-and following regular form
+---
+
+and
 
 ```hoon
 %=  $
@@ -86,7 +97,7 @@ and following regular form
 ==
 ```
 
-is following irregular form
+is
 
 ```hoon
 $(n (dec n))
@@ -96,7 +107,9 @@ $(n (dec n))
 
 ### Cores
 
-A core is a cell of operations and data. Bar (`|`) runes make cores. A core is a cell `[battery payload]`.
+A key Hoon data structure.
+
+A core is a cell of operations and data. Bar (`|`) runes make cores. A core is a cell `[battery payload]`. Many cores have a default `$` (buc) arm, essentially the primary (or only) code. The `gate` core marries a `batter` (the operating code) to the `payload` (the input values AND the `subject` (operating context)).
 
 battery
 : describes the things that can be done (the operations)
@@ -110,9 +123,11 @@ payload
 - sample = input (arguments, parameters)
 - context = effective subject of the battery
 
-Head (battery) of `dec` generator: `+:dec`
+TODO: what is battery and what payload?:
 
-Tail (payload) of `dec` generator::
+Head (battery) of `dec` generator: `+<:dec`
+
+Tail (payload) of `dec` generator:
 ```dojo
 > +:dec
 [a=0 <46.hgz 1.pnw %140>]
@@ -124,13 +139,23 @@ a=0
 
 Limbs of a core (not the same as `[battery and payload]`):
 
-- arms do things: code (marked by `++` or `+$`)
-- legs hold things: data
+arms 
+: do things (computation)
+: describe known labeled addresses which carry out computations
+: e.g. `++` or `+$`
+
+
+
+legs
+: hold things (data)
+: e.g. `=/`
 
 ### Arms
 
-An arm is a Hoon expression to be evaluated against the core subject (i.e. its parent 
+An arm is a Hoon expression to be evaluated against the core subject (i.e. its parent
 core is its subject). Arm is a features of core (no arms outside of cores).
+
+An arm is some expression of Hoon encoded as a noun. (By 'encoded as a noun' we literally mean: 'compiled to a Nock formula'.)
 
 Within a core, we label arms as Hoon expressions (frequently `|=` bartis gates) using
 the `++` luslus digraph (`++` isn't formally a rune because it doesn't actually change
@@ -161,6 +186,16 @@ An example defining two gates as arms which can be called later:
 %:  add-one  n  ==
 ```
 
+Which can be used like this:
+
+```dojo
+> (add-one:adder 5)
+6
+
+> (sub-one:adder 5)
+4
+```
+
 Another example defining a card deck type as core:
 
 ```hoon
@@ -172,6 +207,24 @@ Another example defining a card deck type as core:
 --
 ```
 
+### What is a Gate
+
+A gate is a core with two distinctive properties:
+
+1. The battery of a gate contains an arm which has the special name `$` buc. The `$` buc arm contains the instructions for the function in question.
+2. The payload of a gate consists of a cell of `[sample context]`.
+
+As a tree, a gate looks like the following:
+```
+[$ [sample context]]
+
+       gate
+      /    \
+     $      .
+           / \
+     sample   context
+```
+
 ### Recursion
 
 trap (`|-`) is a core with single arm named buc (`$`).
@@ -179,7 +232,8 @@ trap (`|-`) is a core with single arm named buc (`$`).
 centis (`|-`) tells Hoon to find the buc (`$`) core and reevaluate it with the list of changes attached to it.
 
 ```hoon
-::  Recursion using traps
+::
+::    Recursion using traps
 ::
 =/  counter  1
 =/  sum  0
@@ -201,13 +255,58 @@ centis (`|-`) tells Hoon to find the buc (`$`) core and reevaluate it with the l
 ==
 ```
 
+```hoon
+::
+::    The Collatz conjecture
+::
+::  https://en.wikipedia.org/wiki/Collatz_conjecture
+::
+::  n/2    if n=0 (mod 2)
+::  3*n+1  if n=1 (mod 2)
+::
+|=  n=@u                          :: gate  (function)
+^-  [@u @u]                       :: fence (return type)  of a cell of two atoms
+=/  m  n                          :: face  (variable)     of maximal value
+=/  i  0                          :: face                 of control variable
+|-                                :: trap  (recursion point)
+?:  =(n 1)                        :: conditional
+   [i m]                          ::       (return value) of a cell of two atoms
+?:  =((mod n 2) 0)                :: conditional
+  %=  $                           :: resolve wing (data reference) with changes
+    n  (div n 2)
+    m  (max m n)
+    i  +i
+  ==
+%=  $                             :: resolve wing (data reference) with changes
+  n  (add (mul n 3) 1)
+  m  (max m n)
+  i  +i
+==
+```
+
+```hoon
+::
+::    Calculate a factorial
+::
+|=  n=@ud
+|-
+~&  n
+?:  =(n 1)
+  n
+:: %+ apply a gate to [a b] cell sample
+::
+%+  mul
+n
+%=  $
+  n  (dec n)
+==
+```
+
 ## Examples
 
 - [/lib/number-to-words.hoon](/gen/three/number-to-words.hoon)
 
 ```hoon
-::  /lib/number-to-words.hoon
-::
 ::  |number-to-words: conversion of unsigned integers to a tape
 ::
 ::  returns a unit because not all numbers can always be represented

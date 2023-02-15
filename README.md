@@ -13,16 +13,17 @@ The git repository with the code related to the lessons can be found [here](http
 2. Irregular syntax, more branching, functions (`gate`), structures (`mold`) and programs (`generator`).
     - [notes](notes/lesson-2.md)
     - code
-        - [branch.hoon](gen/branch.hoon)
+        - [branch.hoon](gen/two/branch.hoon)
 3. Binary trees, recursion (`trap`) and cores
-    - [notes on binary trees](notes/lesson-3-2.md)
-    - [notes on recursion and cores](notes/lesson-3-1.md)
+    - [notes on binary trees](notes/lesson-3-1.md)
+    - [notes on recursion and cores](notes/lesson-3-2.md)
     - code
-        - [lesson3.hoon](gen/lesson3.hoon)
-        - [add-sub.hoon](gen/add-sub.hoon)
-        - [fact.hoon](gen/fact.hoon)
-        - [card-deck.hoon](gen/card-deck.hoon)
-        - [sum-of-five.hoon](gen/sum-of-five.hoon)
+        - [card-deck.hoon](gen/three/card-deck.hoon)
+        - [number-to-words.hoon](gen/three/number-to-words.hoon)
+        - [sum-of-five.hoon](gen/three/sum-of-five.hoon)
+        - [fact.hoon](gen/three/fact.hoon)
+        - [add-sub-one.hoon](gen/three/add-sub-one.hoon)
+        - [collatz.hoon](gen/three/collatz.hoon)
 4. Text (`cord`, `knot`, `term`, and `tape`), lists and libraries.
     - [notes](notes/lesson-4.md)
 
