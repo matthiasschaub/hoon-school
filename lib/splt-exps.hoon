@@ -2,34 +2,42 @@
 ::
 ::  dojo:
 ::      > =splt -build-file %/lib/splt-exps/hoon
-::      > =myexps ini:splt
+::      > =myexps [[~zod 1] [~pub 2] [~zod 3] ~]
 ::      > =myexps (add:splt myexps ~zod 1)
+::      > =myexps (sum.splt myexps)
 ::      > myexps
 ::
 |%
-+$  ex   [plot=@p val=@ud]
++$  ex   [plot=@p val=@]
 +$  exs  (list ex)
-++  ini
-  ::    initialize list of shared expenses
-  ::
-  ^-  exs
-  [[~zod 0] ~]
 ++  add
-  ::    add expense to shared expenses
+  ::    add expense to shared expenses list
   ::
   |=  [exps=exs exp=ex]
   ^-  exs
   (snoc exps exp)
 ++  sum
-  ::    sum expenses of all plots
+  ::    sum up shared expenses per plot
   ::
-  ::  create a map
-  ::
-  %+  roll  a
-    |=  [[p=@p q=@] counts=(map @p @)]
-    (~(put by counts) p (add (~(gut by counts) p 0) q))
-++  splt
-  ::   split expenses
-  ::
-  ~
+  |=  exps=exs
+  ^-  (map @p @)
+  %+  roll  exps                             :: moves across list and slam gate
+    |=  [[plot=@p val=@] sum=(map @p @)]
+    =/  cur                                  :: current value
+      %:
+        :: grab value with default
+        ::
+        %~  gut  by                          :: pull the gut arm of the by core
+          sum  plot  0                       :: arguments (map key val)
+      ==
+    =/  tlt                                  :: total value
+      %:  ^add
+        cur  val
+      ==
+    %:
+      :: add key-value pair
+      ::
+      %~  put  by
+        sum  plot  tlt
+    ==
 --
