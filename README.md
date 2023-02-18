@@ -19,13 +19,21 @@ The git repository with the code related to the lessons can be found [here](http
     - [notes on recursion and cores](notes/lesson-3-2.md)
     - code
         - [card-deck.hoon](gen/three/card-deck.hoon)
-        - [number-to-words.hoon](gen/three/number-to-words.hoon)
+        - [number-to-words.hoon](lib/number-to-words.hoon)
         - [sum-of-five.hoon](gen/three/sum-of-five.hoon)
         - [fact.hoon](gen/three/fact.hoon)
         - [add-sub-one.hoon](gen/three/add-sub-one.hoon)
         - [collatz.hoon](gen/three/collatz.hoon)
 4. Text (`cord`, `knot`, `term`, and `tape`), lists and libraries.
-    - [notes](notes/lesson-4.md)
+    - [notes on text and lists](notes/lesson-4-1.md)
+    - [notes on libraries](notes/lesson-4-2.md)
+    - code
+      - [splitter.hoon](gen/four/splitter.hoon)
+      - [ntw.hoon](gen/four/ntw.hoon)
+5. Libraries, Desks and Search Paths
+    - [notes](notes/lesson-5.md)
+6. -
+    - [notes](notes/lesson-6.md)
 
 
 ## Misc

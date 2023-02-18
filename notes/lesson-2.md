@@ -21,10 +21,10 @@ mark
 : transformation rule for data (files types)
 
 mold
-: defines Hoon structures (cells, lists, sets)
+: defines Hoon structures (lists, sets)
 : they have a default value ("bunt")
 : they are strictly statically typed (e.e. they must match)
-: a gate which enforces a structure
+: gates which enforces a structure on a given noun (binary tree)
 
 fence
 : a way of making sure only data matching the appropriate structure get passed on
@@ -126,10 +126,10 @@ are molds, or Hoon types. They are separated by complexity.
 : a type of raw numeric data
 
 (2) Molds
-: structures like cells, lists and sets
+: structures like lists and sets
 : structural representation of data
 : templates or rules for identifying actual type structures
-: gates which enforces a structure
+: gates which enforces a structure on a given noun (binary tree)
 : if `atoms` are atoms `cells` are molecules
 : if `cells` are molecules `molds` are molecule definitions or a template
 

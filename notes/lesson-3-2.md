@@ -19,10 +19,13 @@ limbs
 
 arms
 : hold code
-: do things
+: do things (computation)
+: describe known labeled addresses which carry out computations
+: e.g. `++` or `+$`
 
 legs
-: hold data
+: hold things (data)
+: e.g. `=/`
 
 ## Runes
 
@@ -139,12 +142,11 @@ a=0
 
 Limbs of a core (not the same as `[battery and payload]`):
 
-arms 
+arms
+: hold code
 : do things (computation)
 : describe known labeled addresses which carry out computations
 : e.g. `++` or `+$`
-
-
 
 legs
 : hold things (data)
@@ -304,7 +306,7 @@ n
 
 ## Examples
 
-- [/lib/number-to-words.hoon](/gen/three/number-to-words.hoon)
+[/lib/number-to-words.hoon](/lib/number-to-words.hoon)
 
 ```hoon
 ::  |number-to-words: conversion of unsigned integers to a tape

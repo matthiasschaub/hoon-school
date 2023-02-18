@@ -1,6 +1,4 @@
-# Lesson 5 (WIP)
-
-Libraries, Desks and Search Paths
+# Libraries, Desks and Search Paths
 
 ## Terminology
 

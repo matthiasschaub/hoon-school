@@ -1,5 +1,5 @@
-:: Lesson 2
-:: Convert numbers to words (ntw).
+::
+::   Convert numbers to words (ntw).
 ::
 :: Load library
 ::
