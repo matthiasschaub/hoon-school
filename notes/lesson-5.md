@@ -1,4 +1,4 @@
-# Libraries, Desks and Search Paths
+# Libraries, Desks, Cores and Search Paths
 
 ## Terminology
 
@@ -96,6 +96,7 @@ core
 
 `|^`
 : barket is a battery with many arms incl. $ and no sample
+
 
 #### Changing the Sample
 

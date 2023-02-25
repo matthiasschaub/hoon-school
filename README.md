@@ -14,7 +14,7 @@ The git repository with the code related to the lessons can be found [here](http
     - [notes](notes/lesson-2.md)
     - code
         - [branch.hoon](gen/two/branch.hoon)
-3. Binary trees, recursion (`trap`) and cores
+3. Binary trees, recursion (`trap`) and cores.
     - [notes on binary trees](notes/lesson-3-1.md)
     - [notes on recursion and cores](notes/lesson-3-2.md)
     - code
@@ -30,9 +30,9 @@ The git repository with the code related to the lessons can be found [here](http
     - code
       - [splitter.hoon](gen/four/splitter.hoon)
       - [ntw.hoon](gen/four/ntw.hoon)
-5. Libraries, Desks and Search Paths
+5. Libraries, desks, cores and search paths.
     - [notes](notes/lesson-5.md)
-6. -
+6. Assertions, errors, `doors` and maps.
     - [notes](notes/lesson-6.md)
 
 
