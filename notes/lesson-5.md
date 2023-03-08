@@ -98,6 +98,9 @@ core
 : barket is a battery with many arms incl. $ and no sample
 
 
+Primary use bartis (`|=`), barcab (`|_`), and barcen (`|%`).
+
+
 #### Changing the Sample
 
 ```dojo
