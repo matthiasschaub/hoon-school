@@ -32,11 +32,13 @@ Nock
 : A purely functional typeless programming language (low level)
 : A minimalist Turing complete combinator calculus
 : A Turing-complete function that maps a cell [subject formula] to a noun product
+: A machine language for the Urbit virtual machine layer and event log.
+: decrement: `[8 [1 0] 8 [1 6 [5 [0 7] 4 0 6] [0 6] 9 2 [0 2] [4 0 6] 0 7] 9 2 0 1]`
 
-Noun
-: Everything in Hoon (and Nock, and Urbit) is a noun
-: An atom or a cell
-: A Binary tree whose leaves are atoms
+noun
+: everything in Hoon (and Nock, and Urbit) is a noun
+: an atom or a cell
+: a Binary tree whose leaves are atoms
 
 atom
 : an nonzero integer number (0-∞)
@@ -51,7 +53,7 @@ Hoon programs
 : are built of expressions (`hoon`), rather like mathematical equations. Hoon expressions are built along a backbone of runes, which are two-character symbols that act like keywords in other programming languages to define the syntax, or grammar, of the expression. All runes take a fixed number of “children”. Children can themselves be runes with children, and Hoon programs work by chaining through these until a value—not another rune—is arrived at.
 
 hoon
-: a single function which produces a value.
+: a single function which (always) produces a value.
 
 runes
 : a way to form expressions in Hoon (statements/keywords)
@@ -65,10 +67,11 @@ subject
 : every expression of Hoon is evaluated relative to its subject, a piece of data that represents the environment, or the context, of an expression.
 : the subject is the noun against which any arbitrary Hoon code is evaluated.
 
-aura
+[aura](https://developers.urbit.org/reference/hoon/auras)
+: a metadata “interpretation” of an atom.
 : a tag which lets you treat a number as text, time, date, Urbit address, IP address, and much more
 : data-type
-: `@t`
+: ``> `@ub`32`` results in `0b10.0000`
 
 bunt
 : is the default value of an aura
@@ -76,10 +79,13 @@ bunt
 
 clam
 : validates shape of a noun
+: ensures that everything in the second child matches the aura of the first
+: enforce type constraints
+: `^-  @ux  0x1ab4`
 
 face
-: is the symbolic tree address (variable name)
 : “pin a face to the subject”
+: is the symbolic tree address (variable name)
 : accepts three child expressions: a name (or face), a value, and the rest of the expression
 : `=/  a  .5`
 
@@ -150,6 +156,32 @@ and returns a noun, its *product*.
 Runes are separated from one another by either two spaces or a line break. Both called 'gap'.
 
 All runes take a fixed number of “children”. Children can themselves be runes with children, and Hoon programs work by chaining through these until a value - not another rune - is arrived at.
+
+### Syntax
+
+Tree-like structure of branching expressions joined by runes:
+
+```
+         :-
+        /  \
+       5    6
+
+         %-
+        /  \
+      add  :-
+          /  \
+         5    6
+
+         %-
+        /  \
+      add  :-
+          /  \
+         5    %-
+             /  \
+           add  :-
+               /  \
+              6    7
+```
 
 ### Branching 1
 
