@@ -1,6 +1,6 @@
 # Lesson 2
 
-Irregular syntax, more branching, functions (`gate`), structures (`mold`) and programs (`generator`).
+Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`).
 
 ## Terminology
 
@@ -17,18 +17,26 @@ spec
 referential transparency
 : output value of a functions depends solely upon input value(s)
 
-mark
-: transformation rule for data (files types)
+type
+: a rule for interpretation
+: (1) atoms (atom): values with auras
+: (2) molds (molecule): structures (cells, lists and maps)
+: (3) marks (protein): file types
 
 mold
-: defines Hoon structures (lists, sets)
+: defines Hoon structures (cells, lists and maps
 : they have a default value ("bunt")
 : they are strictly statically typed (e.e. they must match)
 : gates which enforces a structure on a given noun (binary tree)
+: a function from a noun to a noun
+
+mark
+: transformation rule for data (files types)
 
 fence
 : a way of making sure only data matching the appropriate structure get passed on
 : enforce type constraint
+: `^-  @t`
 
 statically typed
 : enforce type constraints
@@ -55,7 +63,8 @@ generator
 : `|=  [a=@ b=@]  %-  add   :-  a  b`
 
 `^-`
-: kethep builds a fence (enforce type constraints)
+: enforce type constraints
+: kethep builds a fence
 : `|=  a=@ud  ^-  @ud`
 
 ## Concepts
@@ -96,42 +105,23 @@ In wide form the rune is immediately followed by parentheses `( )`, and the vari
 %-(add :-(1 2))
 ```
 
-### Branching 2
-
-Test expression:
-- `++gth` (greater than >)
-- `++lth` (less than <)
-- `++gte` (greater than or equal to ≥)
-- `++lte` (less than or equal to ≤)
-
-```hoon
-::  two/branch.hoon
-::
-::  Confirm whether a value is greater then one
-::
-|=  [a=@ud b=@ud]
-^-  @t
-?:  %-  gth  [a b]
-  'yes'
-'no'
-```
-
 ### Types
 
 A type is really a rule for interpretation. There are three kinds of types. All of these
 are molds, or Hoon types. They are separated by complexity.
 
-(1) Atoms
-: values with auras
+(1) Atoms with [aura](https://developers.urbit.org/reference/hoon/auras)
+: values of a data-type
 : a type of raw numeric data
 
 (2) Molds
-: structures like lists and sets
+: structures like cells, lists and maps
 : structural representation of data
 : templates or rules for identifying actual type structures
 : gates which enforces a structure on a given noun (binary tree)
+: function from a noun to a noun.
 : if `atoms` are atoms `cells` are molecules
-: if `cells` are molecules `molds` are molecule definitions or a template
+: if `cells` are molecules `molds` are ideal molecules or a template
 
 (3) Marks
 : file types
@@ -146,8 +136,13 @@ A mold is a function from a noun to a noun. A mold can be used to map any noun t
 typed value - If this fails, then the mold crashes. They are actually gates, meaning that they operate on a value to coerce it to a particular structure.
 
 Two things to do with molds are:
-- `$?` bucwut, which forms a type union
-- `$:` buccol, which forms a named tuple
+
+`$?`
+: bucwut, which forms a type union
+: `$?  [@ud @ux @ub ~]`
+
+`$:`
+: buccol, which forms a named tuple
 
 #### Type Unions
 
@@ -216,4 +211,3 @@ A nonsensical gate playing around with casting and irregular syntax.
 ::
 :-  a  :-  b  c
 ```
-

@@ -10,7 +10,8 @@ The git repository with the code related to the lessons can be found [here](http
 
 1. Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching.
     - [notes](notes/lesson-1.md)
-2. Irregular syntax, more branching, functions (`gate`), structures (`mold`) and programs (`generator`).
+    - [homework](homework/hw-1.md)
+2. Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`).
     - [notes](notes/lesson-2.md)
     - code
         - [branch.hoon](gen/two/branch.hoon)

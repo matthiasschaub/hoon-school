@@ -183,7 +183,7 @@ Tree-like structure of branching expressions joined by runes:
               6    7
 ```
 
-### Branching 1
+### Branching
 
 Branching expression:
 - `?:` wutcol
@@ -191,6 +191,24 @@ Branching expression:
 
 ```hoon
 ?:  =([a b])
+  'yes'
+'no'
+```
+
+Test expression:
+- `++gth` (greater than >)
+- `++lth` (less than <)
+- `++gte` (greater than or equal to ≥)
+- `++lte` (less than or equal to ≤)
+
+```hoon
+::  two/branch.hoon
+::
+::  Confirm whether a value is greater then one
+::
+|=  [a=@ud b=@ud]
+^-  @t
+?:  %-  gth  [a b]
   'yes'
 'no'
 ```
