@@ -11,6 +11,7 @@ The git repository with the code related to the lessons can be found [here](http
 1. Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching.
     - [lesson 0 & 1](lessons/hsl-1.md)
     - [homework 0](homeworks/hw-0.md)
+    - [homework 1](homeworks/hw-1.md)
 2. Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`).
     - [lesson 2](lessons/hsl-2.md)
     - code
