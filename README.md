@@ -1,23 +1,23 @@
-# Hoon School
+# Hoon School (hsl-2023.3)
 
 Notes on learning [Hoon](https://developers.urbit.org/reference/hoon/overview).
 
 A lot of the definitions and code examples are taken directly from either the [official documentation on Hoon](https://developers.urbit.org/reference/hoon/overview) or from the [Hoon School curriculum](https://developers.urbit.org/guides/core/hoon-school/A-intro).
 
-## Lessons
+## Lessons and Homeworks
 
 The git repository with the code related to the lessons can be found [here](https://git.sr.ht/~talfus-laddus/hoon-school).
 
 1. Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching.
-    - [notes](notes/lesson-1.md)
-    - [homework 0](homework/hw-0.md)
+    - [lesson 0 & 1](lessons/hsl-1.md)
+    - [homework 0](homeworks/hw-0.md)
 2. Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`).
-    - [notes](notes/lesson-2.md)
+    - [lesson 2](lessons/hsl-2.md)
     - code
         - [branch.hoon](gen/two/branch.hoon)
 3. Binary trees, recursion (`trap`) and cores.
-    - [notes on binary trees](notes/lesson-3-1.md)
-    - [notes on recursion and cores](notes/lesson-3-2.md)
+    - [lesson 3 on binary trees](lessons/hsl-3-1.md)
+    - [lesson 3 on recursion and cores](lessons/hsl-3-2.md)
     - code
         - [card-deck.hoon](gen/three/card-deck.hoon)
         - [number-to-words.hoon](lib/number-to-words.hoon)
@@ -26,20 +26,22 @@ The git repository with the code related to the lessons can be found [here](http
         - [add-sub-one.hoon](gen/three/add-sub-one.hoon)
         - [collatz.hoon](gen/three/collatz.hoon)
 4. Text (`cord`, `knot`, `term`, and `tape`), lists and libraries.
-    - [notes on text and lists](notes/lesson-4-1.md)
-    - [notes on libraries](notes/lesson-4-2.md)
+    - [lessons 4 on text and lists](lessons/hsl-4-1.md)
+    - [lessons 4 on libraries](lessons/hsl-4-2.md)
     - code
       - [splitter.hoon](gen/four/splitter.hoon)
       - [ntw.hoon](gen/four/ntw.hoon)
 5. Libraries, desks, cores and search paths.
-    - [notes](notes/lesson-5.md)
+    - [lesson 5](lessons/hsl-5.md)
 6. Assertions, errors, `doors` and maps.
-    - [notes](notes/lesson-6.md)
+    - [lesson 6](lessons/hsl-6.md)
 
-
-## Misc
+## Resources
 
 - [Pronouncing Hoon](pronouncing-hoon.md)
+- [Urbit Userspace Style Guide](https://www.ajlamarc.com/blog/2023-02-26-urbit-style/)
+- [Tlon Bouncer](https://github.com/tloncorp/bouncer)
+    - Connects to a running ship and runs a customizable script to merge, mount, rsync, commit, and install.
 
 ## Setup
 
