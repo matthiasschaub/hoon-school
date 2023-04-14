@@ -54,7 +54,7 @@ tape
 : `@t`
 
 generator
-: Hoon program
+: Hoon program stored in a file
 
 ## Runes
 

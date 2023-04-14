@@ -122,8 +122,9 @@ gap
 : `=/  a  .5  ^-  @  a`
 
 `^-`
-: kethep casts by explicit type label.
+: kethep casts by explicit type label
 : enforces type constrain
+: enforces that `hoon` matches `aura`
 : `^-  @ux  ^-  @  5.5`
 : irregular syntax: ```@ux`5.5``
 
