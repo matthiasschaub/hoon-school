@@ -8,7 +8,7 @@ You work in a lab. The lab uses a scale which is inaccurate for values less than
 ::
 ::    Q1
 ::
-::        > =scale -build-file %/gen/hw2/q1/hoon
+::        > =scale -build-file %/lib/hw2/q1/hoon
 ::        > (corrected-weight:scale 11)
 ::
 |%                      :: a core
@@ -30,7 +30,7 @@ The lab needs to know the total quantity of reagent (in grams) you've been able 
 ::
 ::    Q2
 ::
-::        > =reagent -build-file %/gen/hw2/q2/hoon
+::        > =reagent -build-file %/lib/hw2/q2/hoon
 ::        > (weekly-reagent:reagent ~[1 1 1 1 1 1 1])
 ::
 |%
@@ -51,7 +51,25 @@ The lab needs to know the total quantity of reagent (in grams) you've been able 
 
 ## Q3
 
-Produce a type arm named `reptile` using +$ lusbuc which is a type union ($? bucwut) for several reptiles of your choice.  (E.g. if I were doing this for amphibians, I could use %frog, %toad, and %salamander.)  Provide at least four options in the type union.  (The `%word` syntax is a "term", or internal constant value we can use to label things in Hoon:  previewing this a bit!)
+Produce a type arm named `reptile` using `+$` lusbuc which is a type union (`$?` bucwut) for several reptiles of your choice.  (E.g. if I were doing this for amphibians, I could use %frog, %toad, and %salamander.)  Provide at least four options in the type union.  (The `%word` syntax is a "term", or internal constant value we can use to label things in Hoon:  previewing this a bit!)
+
+```hoon
+::
+::    Q3
+::
+::        > =q -build-file %/lib/hw2/q3/hoon
+::        > (reptile:q ~[1 1 1 1 1 1 1])
+::
+|%                 :: core
+  +$  reptile      :: typed arm
+    $:             :: type  union
+      %frog
+      %toad
+      %salamander
+      %chamaeleon
+    ==
+--
+```
 
 
 ## Q4
@@ -75,6 +93,28 @@ You can check for whether two values are equal using `=(1 2)` syntax (irregular 
 
 You can append a value to a list using `weld`, e.g. `(weld ~[1] ~[2])` → `~[1 2]`.
 
+```hoon
+::
+::    Q4
+::
+::        > +hw2/q4 `(list @)`~[1 2]
+::
+|=  in=(list @)
+^-  (list @)
+=/  length  (lent in)
+=/  out  *(list @)       :: bunt value (default value)
+=/  counter  0
+|-                       :: trap (recursion point)
+?:  .=  counter  length  :: condition
+  out
+%=  $
+  counter  (add counter 1)
+  ::  snag: index
+  ::  snoc: append
+  ::
+  out  (snoc out (add (snag counter in) 1))
+==
+```
 
 ## Q5
 
@@ -83,3 +123,25 @@ Produce a gate (generator) which accepts a list of values and yields a list with
 For example, given the `(list @ux)` `[0x0 0x1 0x2 ~]`, the generator should produce `~[0x2 0x1 0x0]`.
 
 Your code from the previous exercise should work with modest changes.
+
+```hoon
+::
+::    Q5
+::
+::        > +hw2/q5 `(list @)`~[1 2]
+::
+|=  in=(list @)
+^-  (list @)
+=/  out  *(list @)       :: bunt value (default value)
+=/  counter  (lent in)
+|-                       :: trap (recursion point)
+?:  .=  counter  0       :: condition
+  out
+%=  $
+  counter  (dec counter)
+  ::  snag: index
+  ::  snoc: append
+  ::
+  out  (snoc out (snag (dec counter) in))
+==
+```
