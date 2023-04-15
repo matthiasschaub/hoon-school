@@ -13,6 +13,7 @@ The git repository with the code related to the lessons can be found [here](http
     - [homework 0](homeworks/hw-0.md)
     - [homework 1](homeworks/hw-1.md)
 2. Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`).
+    - [homework 2](homeworks/hw-2.md)
     - [lesson 2](lessons/hsl-2.md)
     - code
         - [branch.hoon](gen/two/branch.hoon)
