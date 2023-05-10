@@ -68,9 +68,9 @@ dojo: hoon expression failed.
 - `+/"hello"` -> `t="ello"`
 
 ```dojo
-> -:[1 2 3]
+> -:[1 2 3]  # head
 1
-> +:[1 2 3]
+> +:[1 2 3]  # tail
 2 3
 ```
 
@@ -89,3 +89,28 @@ aa.a.data
 ::
 +:bbb.aa.a.data
 ```
+
+#### Errors
+
+```dojo
+> collatz:[collatz=33]
+33
+> foo:[collatz=33]
+.find.add
+dojo: hoon expressison failed
+```
+
+#### Skip a Match
+
+```dojo
+> collatz:[collatz=33 collatz=100]
+33
+> ^collatz:[collatz=33 collatz=100]
+100
+```
+
+### Depth-First Search
+
+Two cases (`.` vs `:`):
+1. `.` represents a search path into something that is known about (data is known by dojo or part of the dojos subject).
+2. `:` takes data as the subject (the horizon of known information).

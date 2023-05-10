@@ -2,79 +2,7 @@
 
 ## Terminology
 
-library
-: cores stored in `/lib` which provide access to arms and legs (operations and data)
-
-desk
-: organizes a collection of files, including generators, libraries, agents, and system code into on coherent bundle
-: similar to a file drive or a Git branch
-
-beak
-: lets Clay globally identify any resource on any ship at any point in time.
-: three components: (1) the ship; (2) the desk; (3) revision number or timestamp
-: `/~zod/base/2/`
-
-path
-: a list of text identifiers
-: first three are always the beak
-: last one reverts to the mark
-: `/~zod/base/~2022.6.14..18.16.53..2102/gen/ls/hoon`
-
-marks
-: file extension + conversation rules (e.g. yield JSON from Hoon data structures)
-
-## Runes
-
-`/+`
-: faslus loads code
-: library import
-
 ## Concepts
-
-### Desk directory structure
-
-Every desk has a standard directory structure
-- `/app` for agents
-- `/gen` for generators
-- `/lib` for library and helper files
-- `/mar` for marks
-- `/sur` for shared structures
-- `/ted` for threads
-
-### Depth-First Search
-
-Two cases (`.` vs `:`):
-1. `.` represents a search path into something that is known about (data is known by dojo or part of the dojos subject).
-2. `:` takes data as the subject (the horizon of known information).
-
-```dojo
-> =data [a=1 aa=2]
-> a.data
-1
-> a:data
-1
-```
-
-`^` ket skips a match.
-
-````dojo
-> collatz:[collatz=33 100]
-33
-> +:[collatz=33 100]
-100
-> +3:[collatz=33 100]
-100
-> collatz:[collatz=33 collatz=100 50]
-33
-> ^collatz:[collatz=33 collatz=100 50]
-100
-```
-
-```hoon
-|=  list=(list @)
-^-  (^list @)  and :: Skip first match (the face)
-```
-
 
 ### Cores
 

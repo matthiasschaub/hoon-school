@@ -47,12 +47,6 @@ list
 : `[1 2 3 ~]`
 : irregular syntax: `~[1 2 3]`
 
-tape
-: text or string
-: list of individual characters
-: `"with double quotes"`
-: `@t`
-
 generator
 : Hoon program stored in a file
 

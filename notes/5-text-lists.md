@@ -11,9 +11,10 @@ cord
 
 tape
 : list
+: list of individual characters
 : most useful for text processing (one char at a time)
+: `"with double quotes"`
 : `(list @t)`
-: `"Text"`
 
 knot
 : are used for expressing paths
@@ -130,6 +131,12 @@ Interpolation:
 ### List
 
 There is no type list. List is a mold builder (a gate building gate which enforces a structure on given noun).
+
+```hoon
+:: a face of type list with default value (bunt)
+=/ out *(list @)
+:: is equivalent to
+=| out=(list @)
 
 ## Example
 
