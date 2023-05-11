@@ -1,8 +1,17 @@
-# Lesson 4
+# Notes 5 - Lists and Text
 
-Text (`cord`, `knot`, `term`, and `tape`) and lists
+Lists and Text (`cord`, `knot`, `term`, and `tape`).
 
 ## Terminology
+
+list
+: a running cell which terminates in a `~` (null) atom
+: null terminated tuple
+: `[1 2 3 ~]`
+: irregular syntax: `~[1 2 3]`
+
+unit
+: either null (`~`) or a cell of an null and some other value.
 
 cord
 : atom
@@ -26,13 +35,47 @@ term
 : `@tas`
 : `%text`
 
-unit
-: either an empty value (null or `~`) or a cell of an empty value and some other value.
+## Concepts
 
-## Runes
+### List
 
-`!:`
-: zapcol turns on error tracing
+There is no type list. List is a mold builder (a gate building gate which enforces a structure on given noun).
+
+```hoon
+:: a face of type list with default value (bunt)
+=/ out *(list @)
+:: is equivalent to
+=| out=(list @)
+```
+
+### Cords and Tapes
+
+Cord as atom vs tapes as lists:
+
+```dojo
+> `@ux`'Cord'
+0x6f.6c6c.6548
+> `@ux`"Tape"
+-need.@
+-have.[i=@tD t=""]
+nest-fail
+dojo: hoon expression failed
+```
+
+### String Operations
+
+1. producing text
+2. manipulating text
+3. analyzing text
+  1. search
+  2. parse
+  3. convert to data
+
+Interpolation:
+```dojo
+> "{<(add 5 6)>} is the answer.")
+'11 is the answer.'
+```
 
 ## Programs
 
@@ -96,47 +139,6 @@ roll
 turn
 : `turn (gulf 65 90) @t)`
 : `turn (gulf 1 20) fac)`
-
-## Concepts
-
-### Cords and Tapes
-
-Cord as atom vs tapes as lists:
-
-```dojo
-> `@ux`'Cord'
-0x6f.6c6c.6548
-> `@ux`"Tape"
--need.@
--have.[i=@tD t=""]
-nest-fail
-dojo: hoon expression failed
-```
-
-### String Operations
-
-1. producing text
-2. manipulating text
-3. analyzing text
-  1. search
-  2. parse
-  3. convert to data
-
-Interpolation:
-```dojo
-> "{<(add 5 6)>} is the answer.")
-'11 is the answer.'
-```
-
-### List
-
-There is no type list. List is a mold builder (a gate building gate which enforces a structure on given noun).
-
-```hoon
-:: a face of type list with default value (bunt)
-=/ out *(list @)
-:: is equivalent to
-=| out=(list @)
 
 ## Example
 

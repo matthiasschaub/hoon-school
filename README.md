@@ -4,18 +4,23 @@ Notes on learning [Hoon](https://developers.urbit.org/reference/hoon/overview).
 
 A lot of the definitions and code examples are taken directly from either the [official documentation on Hoon](https://developers.urbit.org/reference/hoon/overview) or from the [Hoon School curriculum](https://developers.urbit.org/guides/core/hoon-school/A-intro).
 
-## Lessons and Homeworks
+## Notes
 
-The git repository with the code related to the lessons can be found [here](https://git.sr.ht/~talfus-laddus/hoon-school).
+The git repository with the code (generators and libraries) related to the lessons, notes and homework's can be found [here](https://git.sr.ht/~talfus-laddus/hoon-school).
 
+Main concepts:
 1. [Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching](notes/1-hoon-rune-atom-cell-aura.md)
-2. [Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`)](notes/2-gate-mold-generator.md)
-3. [Binary trees](notes/3-tree-addresses.md)
-4. [Recursion (`trap`) and cores](notes/hsl-3-2.md)
-5. [Text (`cord`, `knot`, `term`, and `tape`) and lists](notes/5-text-lists.md)
+2. [Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`)](notes/2-gates-molds-generators.md)
+3. [Binary trees and addresses](notes/3-tree-addresses.md)
+4. [Cores and recursion (`trap`)](notes/4-cores-recursion.md)
+5. [Lists and Text (`cord`, `knot`, `term`, and `tape`)](notes/5-text-lists.md)
+6. [More on Cores and Doors](notes/6-doors.md)
+7. [Maps](notes/7-maps.md)
+
+Additional notes:
+8. [Assertions, errors, `doors` and maps](notes/hsl-6.md)
 6. [Libraries](notes/6-libraries.md)
 7. [Libraries, desks, cores and search paths](notes/hsl-5.md)
-8. [Assertions, errors, `doors` and maps](notes/hsl-6.md)
 
 ## Setup
 

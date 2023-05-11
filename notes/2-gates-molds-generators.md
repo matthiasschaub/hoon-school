@@ -1,4 +1,4 @@
-# Lesson 2
+# Notes 2
 
 Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`).
 
@@ -60,6 +60,12 @@ generator
 : enforce type constraints
 : kethep builds a fence
 : `|=  a=@ud  ^-  @ud`
+
+`%-`
+: cenhep slams a gate (calls a function)
+: `%-  add  :-  1  3`
+: irregular syntax `(add 1 3)`
+
 
 ## Concepts
 

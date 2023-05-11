@@ -1,13 +1,6 @@
-# Lesson 3 - Recursion and Cores
+# Notes 4 - Cores and Recursion
 
 ## Terminology
-
-type inference
-: infer the type of an expression using syntactic clues
-: `> ? 0x15` results in `@ux`
-
-trap
-: can be used to repeat a section of code with changes to values (recursion)
 
 core
 : a data structure
@@ -27,19 +20,11 @@ legs
 : hold things (data)
 : e.g. `=/`
 
+trap
+: can be used to repeat a section of code with changes to values (recursion)
+
+
 ## Runes
-
-`~?`
-: sigzap is a `hint`
-: tells the runtime to make a side effect (print)
-: this is not nock, no changes to state are made
-
-`~&`
-: sigwut is a debugging print statement
-
-`|-`
-: barhep sets a `trap`
-: sets a recursion point and immediately slams the `$` (buc) arm
 
 `%=`
 : centis resolves a wing of the subject, but with changes made.
@@ -70,20 +55,12 @@ legs
 `=<`
 : Same as above but inverted
 
+`|-`
+: barhep sets a `trap`
+: sets a recursion point and immediately slams the `$` (buc) arm
+
 `.+`
 : Increment
-
-`.=`
-: dottis tests for equality
-
-`!>`
-: zapgar forms a vase (type-noun)
-
-`-:!>`
-: type spear
-: the type of given value value
-: left side of a vase (type-noun)
-: `-:!>(1)  :: produces: #t/@ud`
 
 
 ## Irregular Forms
@@ -126,16 +103,43 @@ payload
 - sample = input (arguments, parameters)
 - context = effective subject of the battery
 
-TODO: what is battery and what payload?:
+Head of `dec` will return the battery or executable code:
+```dojo
+> -:dec
+[ 11
+  [ 1.851.876.717
+    [ 1
+      [1 1.717.658.988]
+      7
+      [0 1]
+      8
+      [1 1 100 101 99 114 101 109 101 110 116 45 117 110 100 101 114 102 108 111 119 0]
+      9
+      2
+      0
+      1
+    ]
+    0
+    1
+  ]
+  6
+  [5 [1 0] 0 6]
+  [0 0]
+  8
+  [1 0]
+  8
+  [1 6 [5 [0 30] 4 0 6] [0 6] 9 2 10 [6 4 0 6] 0 1]
+  9
+  2
+  0
+  1
+]
+```
 
-Head (battery) of `dec` generator: `+<:dec`
-
-Tail (payload) of `dec` generator:
+Tail of `dec` will return the payload (sample and context):
 ```dojo
 > +:dec
-[a=0 <46.hgz 1.pnw %140>]
-> +>:dec
-a=0
+[a=0 <33.sam 1.pnw %139>]
 ```
 
 ### Limbs
@@ -209,7 +213,7 @@ Another example defining a card deck type as core:
 --
 ```
 
-### What is a Gate
+### What is a Gate?
 
 A gate is a core with two distinctive properties:
 
@@ -292,7 +296,7 @@ centis (`|-`) tells Hoon to find the buc (`$`) core and reevaluate it with the l
 ::
 |=  n=@ud
 |-
-~&  n
+~&  n  :: debugging print statement
 ?:  =(n 1)
   n
 :: %+ apply a gate to [a b] cell sample

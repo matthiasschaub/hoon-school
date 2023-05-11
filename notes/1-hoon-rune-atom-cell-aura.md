@@ -1,4 +1,4 @@
-# Lesson 1
+# Notes 1
 
 Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching.
 
@@ -83,6 +83,10 @@ clam
 : enforce type constraints
 : `^-  @ux  0x1ab4`
 
+type inference
+: infer the type of an expression using syntactic clues
+: `> ? 0x15` results in `@ux`
+
 face
 : “pin a face to the subject”
 : is the symbolic tree address (variable name)
@@ -109,7 +113,7 @@ gap
 : colket construct a quadruple (4-tuple).
 
 `%-`
-: cenhep slams a gate (calls a function)
+: cenhep calls a function
 : `%-  add  :-  1  3`
 : irregular syntax `(add 1 3)`
 
@@ -136,6 +140,9 @@ gap
 `?:`
 : wutcol branches on a boolean test
 : `?:((gth 1 0) 3 4)`
+
+`.=`
+: dottis tests for equality
 
 
 ## Concepts
