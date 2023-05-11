@@ -39,7 +39,8 @@ term
 
 ### List
 
-There is no type list. List is a mold builder (a gate building gate which enforces a structure on given noun).
+List is a mold builder (a gate building gate which enforces a structure on given noun).
+There is no type list.
 
 ```hoon
 :: a face of type list with default value (bunt)

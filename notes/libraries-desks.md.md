@@ -1,6 +1,4 @@
-# Lesson 4
-
-libraries.
+# Libraries and Desks
 
 ## Terminology
 
@@ -24,7 +22,6 @@ path
 
 marks
 : file extension + conversation rules (e.g. yield JSON from Hoon data structures)
-
 
 ## Runes
 

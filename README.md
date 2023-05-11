@@ -6,21 +6,21 @@ A lot of the definitions and code examples are taken directly from either the [o
 
 ## Notes
 
-The git repository with the code (generators and libraries) related to the lessons, notes and homework's can be found [here](https://git.sr.ht/~talfus-laddus/hoon-school).
+The git repository with the code (generators `gen/` and libraries `lib/`) related to the lessons, notes and homework's can be found [here](https://git.sr.ht/~talfus-laddus/hoon-school).
 
 Main concepts:
 1. [Hoon syntax, expressions (`hoon` and `rune`), values (`atom` and `cell`), data types (`aura`) and branching](notes/1-hoon-rune-atom-cell-aura.md)
 2. [Irregular syntax, functions (`gate`), types, structures (`mold`) and programs (`generator`)](notes/2-gates-molds-generators.md)
 3. [Binary trees and addresses](notes/3-tree-addresses.md)
 4. [Cores and recursion (`trap`)](notes/4-cores-recursion.md)
-5. [Lists and Text (`cord`, `knot`, `term`, and `tape`)](notes/5-text-lists.md)
-6. [More on Cores and Doors](notes/6-doors.md)
+5. [Lists and text (`cord`, `knot`, `term`, and `tape`)](notes/5-text-lists.md)
+6. [More on cores and doors](notes/6-cores-doors.md)
 7. [Maps](notes/7-maps.md)
 
 Additional notes:
-8. [Assertions, errors, `doors` and maps](notes/hsl-6.md)
-6. [Libraries](notes/6-libraries.md)
-7. [Libraries, desks, cores and search paths](notes/hsl-5.md)
+8. [Assertions and errors](notes/asserts-errors.md)
+6. [Libraries and desks](notes/libraries-desks.md)
+7. [Debugging](notes/debug.md)
 
 ## Setup
 
