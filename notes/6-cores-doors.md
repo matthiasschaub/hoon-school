@@ -28,6 +28,10 @@ gate
 : a special case of a door
 : a door with exactly one arm, named $ buc
 
+unit
+: either null (`~`) or a cell of an null and some other value.
+
+
 ## Runes
 `+$`
 : produce a structure arm (type definition)
@@ -77,6 +81,18 @@ gate
 
 
 ## Concepts
+
+### Unit
+
+A Unit is either null (`~`) or a cell of an null and some other value.
+
+```hoon
+> :: TODO
+> `%value  :: create a unit
+[~ %value]
+> (~(get by colors) %green)
+> (need (~(get by colors) %green))
+```
 
 ### Gate-Building Gates
 

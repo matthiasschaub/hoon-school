@@ -10,9 +10,6 @@ list
 : `[1 2 3 ~]`
 : irregular syntax: `~[1 2 3]`
 
-unit
-: either null (`~`) or a cell of an null and some other value.
-
 cord
 : atom
 : most compact way of storing text
@@ -103,7 +100,6 @@ cuss
 find
 : looks for a needle in a haystack
 : search text
-: returns a unit.
 : `(find "e" "Hello"`
 
 lent

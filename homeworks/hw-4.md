@@ -1,6 +1,6 @@
 # HSL ~2023.3 %hw4
 
-Homework #4 for Hoon School Live.
+> Homework #4 for Hoon School Live.
 
 One of the most common kinds of cores in Hoon is the door.
 A door is sort of a gate-builder, which uses its arms to produce gates on demand (e.g. for particular types/auras/molds).
