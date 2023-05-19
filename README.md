@@ -44,9 +44,14 @@ $ urbit $HOME/projects/zod
 > |commit %base  :: sync %base desk with earth directly
 ```
 
-Finally execute a hoon program:
+Finally evaluate a generator (hoon script):
 ```dojo
 > +list 5
+```
+Or build a library:
+```dojo
+> =mylibrary -build-file %/lib/mylibrary/hoon
+> (myarm:mylibrary 1)
 ```
 
 ## Resources

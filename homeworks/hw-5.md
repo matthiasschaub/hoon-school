@@ -6,6 +6,12 @@
 
 Produce a Hoon expression which makes a map containing Shakespeare characters as keys and the corresponding play as the value.  (This does not need to be a jar; you can just include one play for characters that recur in multiple plays.)  You may use ++my or ++put:by or another means to construct the map.  Make sure it has at least four elements.
 
+### Answer
+
+```hoon
+(malt `(list (pair @tas tape))`~[[%lucius "Titus Andronicus"] [%quintus "Titus Andronicus"] [%achilles "Troilus and Cressida"] [%hector "Troilus and Cressida"]])
+```
+
 ## Q2.
 
 Extend the generator to allow for use of characters other than a-z.  It should also permit characters .,;:'" and you may have it rotate those the same way as letters are rotated.

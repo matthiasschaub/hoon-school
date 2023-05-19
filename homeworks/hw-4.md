@@ -35,6 +35,13 @@ Write a gate named ++euler-primes which produces the Euler primes as a list.
 
 Consider the gate `|=(a=@ud (add 1 a))`.  What is the compiled battery of this gate?
 
+### Answer
+
+```
+[8 [9 36 0 8.191] 9 2 10 [6 [7 [0 3] 1 1] 0 14] 0 2]
+
+```
+
 ## Q4
 
 Write an arm named ++factorial which calculates the factorial of a value.  Make its default sample value for the input be 1 using either `$_` or `|:`.  Make sure that 0! results in the value 1.  Answer with the |% core containing the arm.

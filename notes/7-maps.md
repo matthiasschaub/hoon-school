@@ -17,10 +17,12 @@ Example Map:
 
 ```hoon
 > =colors `(map @tas @ux)`(my ~[[%red 0xed.0a3f] [%green 0x1.a638] [%blue 0x66ff]])
-:: by is a core used to deal with maps.
-:: pulling the put arm in the by core with the sample colors.
-:: And then adding a value to it.
-::
+> :: or
+> =colors (malt `(list (pair @tas @ux))`~[[%red 0xed.0a3f] [%yellow 0xfb.e870] [%green 0x1.a638] [%blue 0x66ff]])
+> :: by is a core used to deal with maps.
+> :: pulling the put arm in the by core with the sample colors.
+> :: And then adding a value to it.
+> ::
 > =colors (~(put by colors) [%orangae 0xff.8833])
 ```
 
