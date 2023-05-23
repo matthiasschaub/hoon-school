@@ -54,6 +54,11 @@ Or build a library:
 > (myarm:mylibrary 1)
 ```
 
+Clear all faces:
+```dojo
+:dojo|wipe
+```
+
 ## Resources
 
 - [Pronouncing Hoon](pronouncing-hoon.md)
