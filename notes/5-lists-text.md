@@ -32,6 +32,13 @@ term
 : `@tas`
 : `%text`
 
+## Programs
+
+++limo
+: turns a null-terminated tuple into a `list`
+: `(limo [1 2 3 ~])`
+
+
 ## Concepts
 
 ### List
