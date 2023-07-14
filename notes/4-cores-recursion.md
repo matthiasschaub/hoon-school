@@ -9,6 +9,7 @@ core
 
 limbs
 : arms and legs
+: parts of the subject (binary tree)
 
 arms
 : hold code
@@ -19,6 +20,9 @@ arms
 legs
 : hold things (data)
 : e.g. `=/`
+
+wing
+: search path consisting of limbs
 
 trap
 : can be used to repeat a section of code with changes to values (recursion)
